@@ -1,9 +1,11 @@
-# Data_Science
+# Deutsche-Bahn Passenger Prediction
 Repo of Data Science Projects
 
 ## Project Overview
 
 This project develops a predictive model that forecasts the number of people visiting a particular train station. It uses a dataset containing various features such as the date, time, day of the week, week of the year, and month, as well as the target variable "traffic" (number of people visiting a station).
+
+The dataset contains the passenger-traffic for certain Trainlines in Hamburg, Germany with detailed arrivals and departments for 4 Months, starting November 2016 to March 2017.
 
 Two different types of models were examined: random forest and XGBoost. After the models were trained and optimized, it was found that the XGBoost model performed significantly better compared to the Random Forest model.
 
@@ -20,7 +22,9 @@ First, a random forest regressor was applied to the data. The parameters were se
 
 To further improve the model, a hyperparameter search was performed using Bayesian Optimization. The best hyperparameters found were n_estimators=30 and max_depth=20.
 
-After tuning the random forest, the predictions were only semi-accurate.
+After tuning the random forest, the predictions were OK. However, a deviation of passenger behavior was recognized while the school-vacation in march.
+
+For this reason, the march data was excluded from the model, because there was no data to train this part of the model.
 
 ### XGBoost
 
@@ -29,7 +33,7 @@ Next, an XGBoost model was trained. Similar to the Random Forest, a hyperparamet
 Performance was again evaluated and the XGBoost model showed better performance than the Random Forest model.
 ## Adjustment of predictions
 
-It was found that the model had difficulty predicting the correct values for a given time period (Easter vacations). Since the model did not have access to data that could have learned this pattern, a constant factor was applied to adjust the predictions for that particular period.
+Added Constant: Since the model did not have access to data that could have learned the holiday pattern, a constant factor was applied to adjust the predictions for that particular period.
 ## Conclusions and considerations for the future
 
 The XGBoost model has proven to be effective and can be used to guide how many people will frequent a particular station. However, it is important to note that the model may differ in the future as cities may change, pandemics may occur, or regulatory changes may be introduced. Therefore, it is recommended that the model be maintained at appropriate intervals.
