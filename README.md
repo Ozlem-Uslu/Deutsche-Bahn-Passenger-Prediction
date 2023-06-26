@@ -24,16 +24,34 @@ To further improve the model, a hyperparameter search was performed using Bayesi
 
 After tuning the random forest, the predictions were OK. However, a deviation of passenger behavior was recognized while the school-vacation in march.
 
+![Image_1](https://raw.githubusercontent.com/ksokoll/Deutsche-Bahn-Passenger-Prediction/6aa78b761e0861a346b1e117113e784a2fec02c2/Figure%201%20-%20Forest%20attempt%201.png)
+
+*Figure 1: First attempt of using Random Forest. There is a visible anomaly beginning March 2017.*
+
 For this reason, the march data was excluded from the model, because there was no data to train this part of the model.
+
+![Image_2](https://github.com/ksokoll/Deutsche-Bahn-Passenger-Prediction/blob/main/Figure%202%20-%20Forest%20attempt%202.png?raw=true)
+
+*Figure 2: Adjusted data foundation for random forest*
 
 ### XGBoost
 
 Next, an XGBoost model was trained. Similar to the Random Forest, a hyperparameter search was performed. The best hyperparameters found were n_estimators=200, learning_rate=0.1, and max_depth=9.
 
 Performance was again evaluated and the XGBoost model showed better performance than the Random Forest model.
+
+![Image_3](https://github.com/ksokoll/Deutsche-Bahn-Passenger-Prediction/blob/main/Figure%203%20-%20XGBoost%201.png?raw=true)
+
+*Figure 3: Results of XGBoost after Hyperparameter-Optimization via Hyperopt*
+
 ## Adjustment of predictions
 
 Added Constant: Since the model did not have access to data that could have learned the holiday pattern, a constant factor was applied to adjust the predictions for that particular period.
+
+![Image_4](https://raw.githubusercontent.com/ksokoll/Deutsche-Bahn-Passenger-Prediction/63280ba454ab3efa6d1ce7e4345c9997ed6fe855/Figure%204%20-%20XGBoost%202.png)
+
+*Figure 4: Above XGBoost model on the whole dataset, including March 2017, with the added constant of 0,5*
+
 ## Conclusions and considerations for the future
 
 The XGBoost model has proven to be effective and can be used to guide how many people will frequent a particular station. However, it is important to note that the model may differ in the future as cities may change, pandemics may occur, or regulatory changes may be introduced. Therefore, it is recommended that the model be maintained at appropriate intervals.
